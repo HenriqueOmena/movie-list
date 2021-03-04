@@ -54,7 +54,7 @@ export const FlipCard = styled.div`
     padding-left: 5px;
 
     h1 {
-      flex-grow:1
+      flex-grow: 1;
     }
 
     article {
@@ -68,7 +68,4 @@ export const FlipCard = styled.div`
         box-sizing: content-box;
       }
     }
-
-    }
-  }
 `;
