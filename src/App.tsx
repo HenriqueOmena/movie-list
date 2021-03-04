@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Routes from "routes";
+import { BrowserRouter } from "react-router-dom";
+import { Container } from "./App.styles";
+import Provider from "store/config/provider";
+import { ModalProvider } from "hooks/useModal";
+import { Modal } from "components/Modal";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider>
+        <ModalProvider>
+          <Container>
+            <Routes />
+            <Modal />
+          </Container>
+        </ModalProvider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
