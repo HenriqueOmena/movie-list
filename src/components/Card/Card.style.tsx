@@ -1,32 +1,8 @@
-import { device } from "components/breakpoints";
 import styled from "styled-components";
 
-interface FlipCardProps {
-  extend?: boolean;
-}
-
-export const Container = styled.div``;
-
-export const ExtendCard = styled.div`
-  display: ${(p: FlipCardProps) => (p.extend ? "block" : "none")};
-  ul {
-    li {
-      padding: 10px;
-      float: left;
-    }
-  }
-
-  @media ${device.mobileS} {
-    width: 600px;
-  }
-
-  @media ${device.mobileM} {
-    width: 300px;
-  }
-
-  @media ${device.mobileL} {
-    width: 100%;
-  }
+export const Container = styled.div`
+  margin: 25px;
+  margin: 0 auto;
 `;
 
 export const FlipCard = styled.div`
@@ -34,9 +10,6 @@ export const FlipCard = styled.div`
   width: 300px;
   height: 400px;
   perspective: 1200px;
-
-  .extend-card {
-  }
 
   .inner {
     position: relative;
@@ -70,8 +43,32 @@ export const FlipCard = styled.div`
   }
 
   .back {
-    background-color: #2980b9;
+    background-color: #013567;
     color: white;
     transform: rotateY(180deg);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 5px;
+
+    h1 {
+      flex-grow:1
+    }
+
+    article {
+      overflow: hidden;
+
+      p {
+        padding: 0 20px;
+        max-height: 270px;
+        overflow-y: auto;
+        padding-right: 17px;
+        box-sizing: content-box;
+      }
+    }
+
+    }
   }
 `;

@@ -1,31 +1,51 @@
-import { CollapseMenu } from "components/CollapseMenu";
-import React from "react";
-import { EpisodeProps, RequestEpisode, episodesBySeason } from "./EpisodeList.interface";
-import { Container } from "./EpisodeList.style";
+import React, { useEffect, useState } from "react";
+import { EpisodeProps } from "./EpisodeList.interface";
+import { Container, Episode, HeaderList, Title, VideoImage } from "./EpisodeList.style";
+import ReactHtmlParser from "react-html-parser";
+import { formatEpisodes } from "./EpisodeList.utils";
+import { LinkToEpisode } from "./components/LinkToEpisode";
 
 const EpisodeList: React.FC<EpisodeProps> = ({ episodes }) => {
-  const [seasons, setSeasons] = React.useState<RequestEpisode[]>();
+  const [episodeBySeason, setEpisodeBySeason] = useState<EpisodeProps>();
+  const episodesFormatted = formatEpisodes(episodes);
+  const showEpisodes = (value?: number) => episodesFormatted.find(({ season }) => season === value);
 
-  React.useEffect(() => {
-    setSeasons(episodes);
+  useEffect(() => {
+    setEpisodeBySeason(showEpisodes(1));
   }, []);
 
-  const formatEpisodes = seasons?.reduce<episodesBySeason[]>((prev, episode) => {
-    const ind = prev.findIndex((epi) => epi.season === episode.season);
-    if (ind !== -1) {
-      prev[ind].episodes = [...prev[ind].episodes, episode];
-      return prev;
-    } else {
-      return [...prev, { season: episode.season, episodes: [episode] }];
-    }
-  }, []);
+  const handleChange = (e: string) => setEpisodeBySeason(showEpisodes(parseInt(e)));
 
   return (
     <Container>
-      {formatEpisodes &&
-        formatEpisodes.map(({ season, episodes }) => (
-          <CollapseMenu episodes={episodes} season={season} key={season} />
-        ))}
+      <HeaderList>
+        <h2>Episodes</h2>
+        <select onChange={(e) => handleChange(e.currentTarget.value)}>
+          {episodesFormatted.map(({ season }, index) => (
+            <option key={index} value={season}>
+              Season {season}
+            </option>
+          ))}
+        </select>
+      </HeaderList>
+      {episodeBySeason?.episodes.map(({ image, name, runtime, summary, id, number, season }) => (
+        <Episode key={id}>
+          <VideoImage>
+            <Title>
+              <LinkToEpisode {...{ number, name, id, season }}>
+                {number} - {name}
+              </LinkToEpisode>
+            </Title>
+            <LinkToEpisode {...{ number, name, id, season }}>
+              <img src={image.medium} alt={name} />
+            </LinkToEpisode>
+            <div className="duration">
+              <div className="description">{ReactHtmlParser(summary)}</div>
+              <p className="highlight">duration: {runtime} Min.</p>
+            </div>
+          </VideoImage>
+        </Episode>
+      ))}
     </Container>
   );
 };

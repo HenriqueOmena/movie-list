@@ -8,6 +8,13 @@ export interface EpisodeProps {
   episodes: RequestEpisode[];
 }
 
-export interface episodesBySeason extends EpisodeProps {
+export interface EpisodesWithSeason extends EpisodeProps {
   season: number;
+}
+
+export interface LinkToEpisodeProps {
+  id: number;
+  number: number;
+  season: number;
+  name: string;
 }

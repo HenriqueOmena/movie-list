@@ -1,16 +1,11 @@
-export interface ExtraRequest {
-  rating: {
-    average: number;
-  };
-  genres: string[];
-  _links: { previousepisode: string };
-}
-
 export interface RequestShowTv {
   id: number;
   name: string;
   summary: string;
   url: string;
+  season: number;
+  number: number;
+  runtime: number;
   image: {
     medium: string;
     original: string;
