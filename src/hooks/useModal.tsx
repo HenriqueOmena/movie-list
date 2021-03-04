@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// import useModal from "./useModal";
+import { Modal } from "components/Modal";
 
 interface ContextModal {
   showModal?: boolean;
@@ -10,11 +12,13 @@ const ModalContext = React.createContext<ContextModal>({});
 
 const ModalProvider: React.FC = ({ children }) => {
   let [showModal, setShowModal] = useState(false);
-  let [modalContent, setModalContent] = useState();
+  let [modalContent, setModalContent] = useState(<div>asd</div>);
 
   let handleModal = (content?: JSX.Element) => {
     setShowModal(!showModal);
-    content ?? setModalContent(content);
+    if (content) {
+      setModalContent(content);
+    }
   };
 
   return (

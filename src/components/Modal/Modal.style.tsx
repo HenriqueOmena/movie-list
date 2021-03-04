@@ -1,3 +1,4 @@
+import { device } from "components/breakpoints";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 
@@ -11,38 +12,44 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-//TODO: fix behavior on mobile
 export const ModalWrapper = styled.div`
-  width: 50vw;
+  min-width: 70vw;
+  max-width: 80vw;
+  @media ${device.laptop} {
+    min-width: 50vw;
+    max-width: 87vw;
+  }
+
+  @media ${device.desktop} {
+    border: solid 3px green;
+    min-width: 30vw;
+    max-width: 40vw;
+  }
+
   height: 90vh;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   position: relative;
   z-index: 10;
   border-radius: 10px;
-`;
-
-export const ModalImg = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 0 0 10px;
-  background: #000;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const ModalContent = styled.div`
+  background-color: #282c34;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   line-height: 1.8;
-  color: #141414;
-  p {
-    margin-bottom: 1rem;
-  }
+
   button {
+    margin-left: 5vw;
+    margin-top: 23px;
     padding: 10px 24px;
     background: #141414;
     color: #fff;
@@ -59,4 +66,5 @@ export const CloseModalButton = styled(MdClose)`
   height: 32px;
   padding: 0;
   z-index: 10;
+  color: white;
 `;

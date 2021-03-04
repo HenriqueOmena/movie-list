@@ -19,6 +19,14 @@ export const HeaderList = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 5vw;
+
+  select {
+    padding: 7px 12px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const Episode = styled.div`

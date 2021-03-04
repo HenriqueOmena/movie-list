@@ -1,13 +1,11 @@
 import { ModalContext } from "hooks/useModal";
-import React, { useRef, useEffect, useCallback, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { useSpring, animated } from "react-spring";
-import { ModalProps } from "./Modal.interface";
-import { Background, ModalWrapper, ModalImg, ModalContent, CloseModalButton } from "./Modal.style";
+import { Background, ModalWrapper, ModalContent, CloseModalButton } from "./Modal.style";
 
-const Modal: React.FC = ({ children }) => {
+const Modal: React.FC = () => {
   let { modalContent, handleModal, showModal } = useContext(ModalContext);
 
-  console.log("showModal inside modal", showModal);
   const modalRef = useRef<any>();
 
   const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -30,10 +28,9 @@ const Modal: React.FC = ({ children }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper>
-              <ModalImg src={undefined} alt="camera" />
               <ModalContent>
-                {modalContent}
                 <button onClick={() => handleModal()}>Back</button>
+                {modalContent}
               </ModalContent>
               <CloseModalButton aria-label="Close modal" onClick={() => handleModal()} />
             </ModalWrapper>
