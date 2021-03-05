@@ -1,21 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "components/Card";
-
 import { Container, WrapperCards } from "./ShowList.style";
+import { RequestShowTv } from "components/Card/Card.interface";
+import { apiTvMaze } from "api/config";
 
 const ShowsList = () => {
+  const [shows, setShows] = useState<RequestShowTv[]>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data: showsData } = await apiTvMaze.get(`shows`);
+      setShows(showsData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container>
       <WrapperCards>
-        <Card id={1} />
-        <Card id={2} />
-        <Card id={3} />
-        <Card id={4} />
-        <Card id={5} />
-        <Card id={6} />
-        <Card id={7} />
-        <Card id={8} />
-        <Card id={9} />
+        {shows?.map((show) => (
+          <Card show={show} key={show.id} />
+        ))}
       </WrapperCards>
     </Container>
   );

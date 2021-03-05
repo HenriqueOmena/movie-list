@@ -10,7 +10,7 @@ const Modal: React.FC = () => {
 
   const closeModal = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current === e.target) {
-      handleModal(false);
+      handleModal();
     }
   };
 

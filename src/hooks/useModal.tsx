@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-// import useModal from "./useModal";
-import { Modal } from "components/Modal";
+
+type handleModalParam = JSX.Element | undefined;
 
 interface ContextModal {
   showModal?: boolean;
-  handleModal?: any;
+  handleModal: (content?: handleModalParam) => void;
   modalContent?: JSX.Element;
 }
 
-const ModalContext = React.createContext<ContextModal>({});
+const ModalContext = React.createContext<ContextModal>({ handleModal: () => {} });
 
 const ModalProvider: React.FC = ({ children }) => {
   let [showModal, setShowModal] = useState(false);
-  let [modalContent, setModalContent] = useState(<div>asd</div>);
+  let [modalContent, setModalContent] = useState(<div>No Content</div>);
 
   let handleModal = (content?: JSX.Element) => {
     setShowModal(!showModal);

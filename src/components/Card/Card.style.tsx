@@ -51,21 +51,22 @@ export const FlipCard = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    padding-left: 5px;
 
     h1 {
       flex-grow: 1;
+      margin: 0;
     }
 
     article {
       overflow: hidden;
 
-      p {
+      .summary {
         padding: 0 20px;
-        max-height: 270px;
+        height: 220px;
         overflow-y: auto;
         padding-right: 17px;
         box-sizing: content-box;
       }
     }
+  }
 `;

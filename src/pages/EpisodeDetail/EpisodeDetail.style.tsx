@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border: solid 1px green;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +13,12 @@ export const Container = styled.div`
   }
 
   img {
-    border: solid 3px blue;
     width: 80vw;
     max-width: 360px;
+  }
+
+  p {
+    padding: 40px 10px;
+    max-width: 380px;
   }
 `;

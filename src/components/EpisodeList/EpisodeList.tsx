@@ -5,16 +5,19 @@ import ReactHtmlParser from "react-html-parser";
 import { formatEpisodes } from "./EpisodeList.utils";
 import { LinkToEpisode } from "./components/LinkToEpisode";
 
+// Get All Episodes to spread into modal
 const EpisodeList: React.FC<EpisodeProps> = ({ episodes }) => {
   const [episodeBySeason, setEpisodeBySeason] = useState<EpisodeProps>();
   const episodesFormatted = formatEpisodes(episodes);
-  const showEpisodes = (value?: number) => episodesFormatted.find(({ season }) => season === value);
+  const showEpisodesBySeason = (seasonNumber?: number) =>
+    episodesFormatted.find(({ season }) => season === seasonNumber);
 
   useEffect(() => {
-    setEpisodeBySeason(showEpisodes(1));
+    setEpisodeBySeason(showEpisodesBySeason(1));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (e: string) => setEpisodeBySeason(showEpisodes(parseInt(e)));
+  const handleChange = (e: string) => setEpisodeBySeason(showEpisodesBySeason(parseInt(e)));
 
   return (
     <Container>

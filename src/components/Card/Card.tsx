@@ -7,37 +7,36 @@ import { EpisodeList } from "components/EpisodeList";
 import { RequestEpisode } from "components/EpisodeList/EpisodeList.interface";
 import { ModalContext } from "hooks/useModal";
 
-const Card: React.FC<{ id: number }> = ({ id }) => {
-  const [tvShow, setTvShow] = useState<RequestShowTv>();
+// Get the shows mount a Card with details about it
+const Card: React.FC<{ show: RequestShowTv }> = ({ show }) => {
   const [episodes, setEpisodes] = useState<RequestEpisode[]>();
   let { handleModal } = useContext(ModalContext);
 
-  const handleShowEpisodes = () => {
-    handleModal(episodes && <EpisodeList episodes={episodes} />);
+  const showEpisodesInModal = async () => {
+    episodes && handleModal(<EpisodeList episodes={episodes} />);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data: showsData } = await apiTvMaze.get(`shows/${id}`);
-      const { data: episodesData } = await apiTvMaze.get(`shows/${id}/episodes`);
-
-      setTvShow(showsData);
-      setEpisodes(episodesData);
+    const getEpisodesFromApi = async () => {
+      const { data: episodesData } = await apiTvMaze.get(`shows/${show.id}/episodes`);
+      await setEpisodes(episodesData);
     };
-
-    fetchData();
-  }, [id]);
+    getEpisodesFromApi();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <FlipCard>
       <div className="inner">
         <div className="front">
-          <img src={tvShow?.image.original} alt="" />
+          <img src={show.image.original} alt="" />
         </div>
         <div className="back">
-          <h1>{tvShow?.name}</h1>
-          <article>{ReactHtmlParser(tvShow?.summary ?? "")}</article>
-          <button onClick={() => handleShowEpisodes()}> Episodes </button>
+          <h1>{show.name}</h1>
+          <article>
+            <div className="summary">{ReactHtmlParser(show.summary ?? "")}</div>
+          </article>
+          <button onClick={() => showEpisodesInModal()}> Episodes </button>
         </div>
       </div>
     </FlipCard>

@@ -4,6 +4,7 @@ import { ModalContext } from "hooks/useModal";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+// Just to format correctly the URL to each Show
 const LinkToEpisode: React.FC<LinkToEpisodeProps> = ({ number, name, season, id, children }) => {
   const { handleModal } = useContext(ModalContext);
 
