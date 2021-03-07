@@ -2,7 +2,7 @@ import { apiTvMaze } from "api/config";
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
-import { EpisodeDetail as EpisodeInterface } from "./EpisodeDetail.interface";
+import { EpisodeDetailProps } from "./EpisodeDetail.interface";
 import { Container } from "./EpisodeDetail.style";
 
 /**
@@ -11,11 +11,10 @@ import { Container } from "./EpisodeDetail.style";
  */
 
 const EpisodeDetail: React.FC = () => {
-  let params = useParams();
-  let history = useHistory<{ id: number }>();
-  console.log(params, history.location.state);
-  const { id } = history.location.state;
-  const [episode, setEpisode] = useState<EpisodeInterface>();
+  let params = useParams<{ id: string }>();
+  let history = useHistory();
+  const { id } = params;
+  const [episode, setEpisode] = useState<EpisodeDetailProps>();
 
   useEffect(() => {
     const fetchData = async () => {

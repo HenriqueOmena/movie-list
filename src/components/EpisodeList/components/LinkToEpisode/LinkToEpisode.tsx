@@ -4,12 +4,20 @@ import { ModalContext } from "hooks/useModal";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-// Just to format correctly the URL to each Show
+/**
+ * All parameter of a Episode to generate a correctly URL
+ *
+ * @param number - number
+ * @param name - string
+ * @param episode - number
+ * @param id - number
+ * @returns
+ */
 const LinkToEpisode: React.FC<LinkToEpisodeProps> = ({ number, name, season, id, children }) => {
   const { handleModal } = useContext(ModalContext);
 
   const urlWithParams = (season: number, episode: number, name: string, id: number) => ({
-    pathname: `episode/${season}/${episode}/${formatUrl(name)}`,
+    pathname: `episode/${id}/${season}/${episode}/${formatUrl(name)}`,
     state: { id },
   });
 

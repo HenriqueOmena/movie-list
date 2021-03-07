@@ -1,4 +1,4 @@
-export interface EpisodeDetail {
+export interface EpisodeDetailProps {
   id: number;
   url: string;
   name: string;
@@ -11,8 +11,4 @@ export interface EpisodeDetail {
     original: string;
   };
   summary: string;
-}
-
-export interface EpisodeDetailProps {
-  id: number;
 }
