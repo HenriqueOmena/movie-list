@@ -2,7 +2,10 @@ import { ModalContext } from "hooks/useModal";
 import React, { useRef, useContext } from "react";
 import { useSpring, animated } from "react-spring";
 import { Background, ModalWrapper, ModalContent, CloseModalButton } from "./Modal.style";
-
+/**
+ * A dump element to render a modal
+ * @returns JSX.Element
+ */
 const Modal: React.FC = () => {
   let { modalContent, handleModal, showModal } = useContext(ModalContext);
 

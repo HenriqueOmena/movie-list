@@ -4,6 +4,11 @@ import { Container, WrapperCards } from "./ShowList.style";
 import { RequestShowTv } from "components/Card/Card.interface";
 import { apiTvMaze } from "api/config";
 
+/**
+ * A page to show all TV shows
+ * @returns JSX.Element
+ */
+
 const ShowsList = () => {
   const [shows, setShows] = useState<RequestShowTv[]>();
 

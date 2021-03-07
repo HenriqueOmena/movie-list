@@ -5,7 +5,14 @@ import ReactHtmlParser from "react-html-parser";
 import { formatEpisodes } from "./EpisodeList.utils";
 import { LinkToEpisode } from "./components/LinkToEpisode";
 
-// Get All Episodes to spread into modal
+/**
+ *  Get the shows information and mount a Card with details about it
+ *
+ * @component
+ * @param episodes - array of episodes from a show following the interface
+ * @interface EpisodeProps
+ * @returns JSX.Element
+ */
 const EpisodeList: React.FC<EpisodeProps> = ({ episodes }) => {
   const [episodeBySeason, setEpisodeBySeason] = useState<EpisodeProps>();
   const episodesFormatted = formatEpisodes(episodes);

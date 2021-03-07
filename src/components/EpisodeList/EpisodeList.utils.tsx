@@ -2,7 +2,7 @@ import { EpisodesWithSeason, RequestEpisode } from "./EpisodeList.interface";
 
 /**
  * Get all episodes and covert to a structure by season with episodes
- * @param episodes array of episodes from a season
+ * @param episodes - array of episodes from a season
  */
 export const formatEpisodes = (episodes: RequestEpisode[]) => {
   return episodes.reduce<EpisodesWithSeason[]>((prev, episode) => {
@@ -16,4 +16,9 @@ export const formatEpisodes = (episodes: RequestEpisode[]) => {
   }, []);
 };
 
+/**
+ * Format a name removing the space and adding -
+ * @param name - string with the name
+ * @returns
+ */
 export const formatUrl = (name: string) => name.replace(/\s/g, "-");

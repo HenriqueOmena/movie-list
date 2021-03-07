@@ -5,6 +5,11 @@ import ReactHtmlParser from "react-html-parser";
 import { EpisodeDetail as EpisodeInterface } from "./EpisodeDetail.interface";
 import { Container } from "./EpisodeDetail.style";
 
+/**
+ * A page to show a single episode detail
+ * @returns JSX.Element
+ */
+
 const EpisodeDetail: React.FC = () => {
   let params = useParams();
   let history = useHistory<{ id: number }>();

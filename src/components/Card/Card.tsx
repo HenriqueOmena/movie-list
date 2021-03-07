@@ -7,7 +7,15 @@ import { EpisodeList } from "components/EpisodeList";
 import { RequestEpisode } from "components/EpisodeList/EpisodeList.interface";
 import { ModalContext } from "hooks/useModal";
 
-// Get the shows mount a Card with details about it
+/**
+ *  Get the shows information and mount a Card with details about it
+ *
+ * @component
+ * @param show - object show following the interface
+ * @interface RequestShowTv
+ * @returns JSX.Element
+ */
+
 const Card: React.FC<{ show: RequestShowTv }> = ({ show }) => {
   const [episodes, setEpisodes] = useState<RequestEpisode[]>();
   let { handleModal } = useContext(ModalContext);
