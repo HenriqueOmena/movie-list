@@ -28,8 +28,8 @@ const EpisodeDetail: React.FC = () => {
 
   return (
     <Container>
-      <button type="button" onClick={() => history.goBack()}>
-        Go back
+      <button type="button" onClick={() => history.push("/")}>
+        Go Back
       </button>
       <h1>{episode?.name}</h1>
       <img src={episode?.image.original} alt="" />

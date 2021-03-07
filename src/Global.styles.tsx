@@ -23,9 +23,14 @@ export default createGlobalStyle`
     }
 
     button {
-
+      padding: 10px 24px;
+      background: #141414;
+      color: #fff;
+      border: none;
       &:hover {
         cursor: pointer;
+        background-color: #212121 ;
+        text-decoration: underline;
       }
     }
   }

@@ -50,10 +50,6 @@ export const ModalContent = styled.div`
   button {
     margin-left: 5vw;
     margin-top: 23px;
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
   }
 `;
 
