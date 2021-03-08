@@ -1,11 +1,7 @@
-import { RequestShowTv } from "components/Card/Card.interface";
-
-export interface RequestEpisode extends RequestShowTv {
-  season: number;
-}
+import { RequestShowTv } from "store/shows.interface";
 
 export interface EpisodeProps {
-  episodes: RequestEpisode[];
+  episodes: RequestShowTv[];
 }
 
 export interface EpisodesWithSeason extends EpisodeProps {

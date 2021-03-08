@@ -1,10 +1,11 @@
-import { EpisodesWithSeason, RequestEpisode } from "./EpisodeList.interface";
+import { RequestShowTv } from "store/shows.interface";
+import { EpisodesWithSeason } from "./EpisodeList.interface";
 
 /**
  * Get all episodes and covert to a structure by season with episodes
  * @param episodes - array of episodes from a season
  */
-export const formatEpisodes = (episodes: RequestEpisode[]) => {
+export const formatEpisodes = (episodes: RequestShowTv[]) => {
   return episodes.reduce<EpisodesWithSeason[]>((prev, episode) => {
     const ind = prev.findIndex((epi) => epi.season === episode.season);
     if (ind !== -1) {

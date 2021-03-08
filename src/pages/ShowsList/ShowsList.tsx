@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card } from "components/Card";
 import { Container, WrapperCards } from "./ShowList.style";
-import { RequestShowTv } from "components/Card/Card.interface";
 import { apiTvMaze } from "api/config";
+import { useContext } from "react";
+import { GlobalContext } from "store/config";
+import { setTvShows } from "store/shows";
 
 /**
  * A page to show all TV shows
@@ -10,21 +12,24 @@ import { apiTvMaze } from "api/config";
  */
 
 const ShowsList = () => {
-  const [shows, setShows] = useState<RequestShowTv[]>();
+  const { store, dispatch } = useContext(GlobalContext);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data: showsData } = await apiTvMaze.get(`shows`);
-      setShows(showsData);
-    };
-
-    fetchData();
+    const localTvShows = localStorage.getItem("omena-tv-shows");
+    localTvShows
+      ? dispatch(setTvShows(JSON.parse(localTvShows)))
+      : (async () => {
+          const { data } = await apiTvMaze.get(`shows`);
+          dispatch(setTvShows(data));
+          localStorage.setItem("omena-tv-shows", JSON.stringify(data));
+        })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Container>
       <WrapperCards>
-        {shows?.map((show) => (
+        {store.shows.map((show) => (
           <Card show={show} key={show.id} />
         ))}
       </WrapperCards>

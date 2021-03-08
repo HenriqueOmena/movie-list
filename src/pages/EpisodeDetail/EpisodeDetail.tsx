@@ -17,12 +17,11 @@ const EpisodeDetail: React.FC = () => {
   const [episode, setEpisode] = useState<EpisodeDetailProps>();
 
   useEffect(() => {
-    const fetchData = async () => {
+    (async () => {
       const { data: getEpisode } = await apiTvMaze.get(`episodes/${id}`);
       setEpisode(getEpisode);
-    };
+    })();
 
-    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
