@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { showsStore, Shows } from "../shows";
+import { Shows } from "store/shows.interface";
+import { showsStore } from "../shows";
 
 export interface Store {
   store: Shows;

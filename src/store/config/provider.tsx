@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
+import { ShowsAction } from "store/shows.interface";
 import { Store as StoreGlobalProps, GlobalContext } from ".";
-import authReducer, { showsStore, ShowsAction } from "../shows";
+import authReducer, { showsStore } from "../shows";
 
 const Provider: React.FC = ({ children }) => {
   // Add Each store reducer here
