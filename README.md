@@ -14,7 +14,7 @@
 The main idea here its to get a list of shows and render it on screen with all episodes for each TV show, showing some information's
 
 ### :eyes: Live Preview:
-Check out the [live project](https://www.henriqueomena.com/slack-clone/)
+Check out the [live project](https://movie-list-react.vercel.app/)
 
 ### :art: Style code
 
